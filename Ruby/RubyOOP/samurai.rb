@@ -29,7 +29,11 @@ end
 Nishant = Samurai.new
 Jason = Human.new
 Nishant.death_blow(Jason)
+Nishant.meditate
+puts Nishant.health
 puts Jason.health
 if Jason.health == 0
     puts "Jason is dead :D"
 end
+Nishant.meditate.meditate.meditate
+puts Nishant.health
