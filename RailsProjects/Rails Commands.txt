@@ -23,3 +23,7 @@ rails g controller <ControllerName> <methods space separated>
 **SIMPLIFY CONSOLE LOGS**
     GO TO config/environments/development.rb
     ADD LINE config.log_level = :warn
+
+**SCAFFOLDING**
+    Example
+    rails g scaffold User first_name:string last_name:string email:string age:integer
