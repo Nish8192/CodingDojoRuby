@@ -28,7 +28,7 @@ class StudentsController < ApplicationController
 
     def update
         student = Student.find(params[:id])
-        dojo = Dojo.find(params[:dojo_id])
+        dojo = Dojo.find(params[:dojo])
         student.first_name = params[:first_name]
         student.last_name = params[:last_name]
         student.email = params[:email]
