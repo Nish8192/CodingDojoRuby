@@ -22,4 +22,36 @@ class DojosController < ApplicationController
         end
     end
 
+    def show
+        @dojo = Dojo.find(params[:id])
+        render 'dojos/show.html.erb'
+    end
+
+    def edit
+        @dojo = Dojo.find(params[:id])
+        render 'dojos/edit.html.erb'
+    end
+
+    def update
+        @dojo = Dojo.find(params[:id])
+        @dojo.branch = params[:branch]
+        @dojo.street = params[:street]
+        @dojo.city = params[:city]
+        @dojo.state = params[:state]
+        @dojo.save
+        if @dojo.valid?
+            flash[:errors] = ["Changes saved!"]
+            redirect_to '/'
+        else
+            flash[:errors] = @dojo.errors.full_messages
+            redirect_to '/dojos/edit/' + (@dojo.id).to_s
+        end
+
+    end
+
+    def destroy
+        Dojo.destroy(params[:id])
+        redirect_to '/'
+    end
+
 end

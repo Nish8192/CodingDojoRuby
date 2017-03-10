@@ -5,6 +5,6 @@
 <% end %>
 
 <% @dojos.each do |dojo|%>
-<p><%= dojo.branch%> | <%= dojo.street%> | <%= dojo.city%> | <%= dojo.state%></p>
+<p><%= dojo.branch%> | <%= dojo.street%> | <%= dojo.city%> | <%= dojo.state%> <a href="/dojos/<%=dojo.id%>">Show</a> | <a href="/dojos/edit/<%=dojo.id%>">Edit</a> | <a href="/dojos/<%=dojo.id%>" data-method="delete">Delete</a></p>
 <% end %>
 <a href="/dojos/new">Create New Dojo!</a>
