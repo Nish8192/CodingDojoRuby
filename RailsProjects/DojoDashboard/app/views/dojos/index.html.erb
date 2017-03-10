@@ -1,0 +1,10 @@
+<% if flash[:errors] != nil %>
+<% flash[:errors].each do |error|%>
+<p><%= error %></p>
+<% end %>
+<% end %>
+
+<% @dojos.each do |dojo|%>
+<p><%= dojo.branch%> | <%= dojo.street%> | <%= dojo.city%> | <%= dojo.state%></p>
+<% end %>
+<a href="/dojos/new">Create New Dojo!</a>
