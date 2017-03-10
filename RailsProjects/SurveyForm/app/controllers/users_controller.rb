@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
     def result
         @user = User.last
+        flash[:submitCount] = "You have submitted #{session[:count]} times!!"
         render 'users/result.html.erb'
     end
 
@@ -17,8 +18,6 @@ class UsersController < ApplicationController
         else
             session[:count] += 1
         end
-        # puts params[:user]
-        # User.create(params[:user])
         User.create(name:params[:name], location:params[:location], lang:params[:lang], comment:params[:comment])
         redirect_to '/result'
     end
