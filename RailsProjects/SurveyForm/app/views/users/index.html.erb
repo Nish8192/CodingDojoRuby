@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Enter Your Information</title>
+</head>
+<body>
+    <form action="/result" method="post">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        Enter your name: <input type="text" name="name">
+        Dojo Location: <select name="location">
+            <option value="" disabled>Select</option>
+            <option value="Washington DC">Washington DC</option>
+            <option value="Seattle">Seattle</option>
+            <option value="Mountain View">Mountain View</option>
+            <option value="New York City">New York City</option>
+        </select>
+        Favorite Language: <select name="lang">
+            <option value="" disabled>Select</option>
+            <option value="JavaScript">JavaScript</option>
+            <option value="Python">Python</option>
+            <option value="Ruby">Ruby</option>
+            <option value="Swift">Swift</option>
+        </select>
+        Leave a Comment: <textarea rows="5" cols="30" name="comment"></textarea>
+        <input type="submit" value='Submit Info!!'>
+    </form>
+</body>
+</html>
