@@ -6,10 +6,10 @@ class Project
     end
 
     def elevator_pitch
-        "This project is named: #{@name} and it is #{@desc}"
+        puts "This project is named: #{@name} and it is #{@desc}"
     end
 end
 
 project1 = Project.new("Project1", "The best project. The biggest project. I'm building it.")
 puts project1.name
-puts project1.elevator_pitch
+project1.elevator_pitch
