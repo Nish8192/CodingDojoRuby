@@ -10,7 +10,7 @@ class AppleTree
 
     def yearGoneBy
         @age += 1
-        @height = @height * (1.1)
+        @height *= 1.1
         if @age > 3 && @age <= 10
             @apple += 2
         end
