@@ -1,0 +1,10 @@
+
+<form action="/user/<%=@user.id%>/messages" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <textarea name="content" rows="8" cols="80"></textarea>
+    <input type="submit" value="Post New Message">
+</form>
+
+<%@messages.each do |message|%>
+<p><%= message.content %> || <%= (message.created_at).strftime "%m/%d/%Y %I:%M %p"%></p>
+<%end%>

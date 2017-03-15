@@ -1,0 +1,11 @@
+<%if flash[:messages] != ""%>
+<%flash[:messages].each do |message|%>
+<%=message%>
+<%end%>
+<%end%>
+
+<form action="/" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    Enter User Name: <input type="text" name="name">
+    <input type="submit" value="Login/Create User">
+</form>
