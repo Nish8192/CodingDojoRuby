@@ -1,5 +1,5 @@
 class SecretsController < ApplicationController
-
+    before_action :require_login
     def show
         @secrets = Secret.all
         render "secrets/show.html.erb"

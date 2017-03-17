@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+    # before_action :require_login, except: [:index, :create]
+
+
     def index
         render "users/index.html.erb"
     end
@@ -8,7 +11,7 @@ class UsersController < ApplicationController
         if user.valid?
             flash[:errors] = ["User Created Successfully!"]
             session[:user_id] = user.id
-            redirect_to "users/#{user.id}"
+            redirect_to "/users/#{user.id}"
         else
             flash[:errors] = user.errors.full_messages
             redirect_to "/"

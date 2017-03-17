@@ -1,4 +1,5 @@
 class LikesController < ApplicationController
+    before_action :require_login
     def create
         secret = Secret.find(params[:id])
         Like.create(user: current_user, secret: secret)
