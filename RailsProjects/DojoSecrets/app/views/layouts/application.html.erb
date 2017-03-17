@@ -21,7 +21,10 @@
             <input type="hidden" name="_method" value="delete">
             <input type="submit" value="Log Out">
           </form>
+    <br>
+          <a href="/users/<%= current_user.id %>">GO TO YOUR PROFILE</a>
         <% end %>
+
 
         <%= yield %>
     </body>

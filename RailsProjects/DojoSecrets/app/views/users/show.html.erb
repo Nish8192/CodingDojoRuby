@@ -1,2 +1,27 @@
 <%@user = current_user%>
-<p><%= @user.name %></p>
+
+<h1>Welcome <%= @user.name %></h1>
+
+<h4><a href="/secrets">View All Secrets &#x1F608</a></h4>
+
+<form action="/secrets/create" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <p>Create a new secret! &#x1F609</p>
+    <textarea name="secret" cols="30" rows="10" required></textarea>
+    <input type="submit" value="Create New Secret!">
+</form>
+
+<h2>Your Secrets!!</h2>
+<% if @secrets %>
+<% @secrets.each do |secret| %>
+<p><%= secret.secret %> | <a href="/secrets/<%=secret.id%>" data-method="delete">DELETE</a></p>
+<% end %>
+<% end %>
+
+<h2>Secrets You Have Liked!</h2>
+<% if @liked %>
+<% @liked.each do |like| %>
+<p><%= like.secret.secret %></p>
+<p><%= like.secret.likes.count %> likes!</p>
+<% end %>
+<% end %>
