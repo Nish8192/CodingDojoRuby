@@ -1,0 +1,55 @@
+<style>
+/**{
+    outline: 1px red solid
+}*/
+#wrapper{
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+}
+#register{
+    width: 49%;
+    text-align: center;
+    display: inline-block;
+}
+#login{
+    float: right;
+    width: 49%;
+    text-align: center;
+    display: inline-block;
+}
+</style>
+
+
+<div id="wrapper">
+    <h1>Welcome!!!</h1>
+    <div id="register">
+        <h2>Register!!</h2>
+<form action="/users/create" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <p>First Name: <input type="text" name="first_name"></p>
+    <p>Last Name: <input type="text" name="last_name"></p>
+    <p>Email: <input type="text" name="email"></p>
+    <p>Location: <input type="text" name="location"> <select name="state">
+        <option value="Select State" default disabled>Select State</option>
+        <option value="VA">Virginia</option>
+        <option value="NY">New York</option>
+        <option value="CA">California</option>
+        <option value="DC">Washington DC</option>
+        <option value="CO">Colorado</option>
+    </select></p>
+    <p>Password: <input type="text" name="password"></p>
+    <p>Confirm Password: <input type="text" name="password_confirmation"></p>
+    <input type="submit" value="Create New User">
+</form>
+    </div>
+    <div id="login">
+        <h2>Login!!!</h2>
+        <form action="/sessions/create" method="post">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <p>Email: <input type="text" name="email"></p>
+            <p>Password: <input type="text" name="password"></p>
+            <input type="submit" value="Login">
+</form>
+</div>
+</div>

@@ -1,0 +1,17 @@
+<h1>Edit Your Profile</h1>
+<form action="/users/<%= current_user.id %>/edit" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="hidden" name="_method" value="patch">
+    <p>First Name: <input type="text" name="first_name" value="<%= current_user.first_name%>"></p>
+    <p>Last Name: <input type="text" name="last_name" value="<%= current_user.last_name%>"></p>
+    <p>Email: <input type="text" name="email" value="<%= current_user.email%>"></p>
+    <p>Location: <input type="text" name="location" value="<%= current_user.location%>"><select name="state">
+        <option default disabled>Select a State</option>
+        <option value="VA">Virginia</option>
+        <option value="NY">New York</option>
+        <option value="CA">California</option>
+        <option value="DC">Washington DC</option>
+        <option value="CO">Colorado</option>
+    </select></p>
+    <input type="submit" value="Update User Info">
+</form>
