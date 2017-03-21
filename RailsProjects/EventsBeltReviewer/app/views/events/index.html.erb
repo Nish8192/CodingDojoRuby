@@ -1,5 +1,72 @@
-<% if @events %>
-<% @events.each do |event| %>
-<%= event.name %> | <%= event.location %>
-<% end %>
-<% end %>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg .tg-m1tb{font-weight:bold;background-color:#000000;color:#ffffff;text-align:center;vertical-align:top}
+.tg .tg-yw4l{vertical-align:top}
+</style>
+<h1>Welcome <%= current_user.first_name %>!!</h1>
+
+<h3>Here are some events in your state: </h3>
+<table class="tg">
+  <tr>
+    <th class="tg-m1tb">Name</th>
+    <th class="tg-m1tb">Date</th>
+    <th class="tg-m1tb">Location</th>
+    <th class="tg-m1tb">Host</th>
+    <th class="tg-m1tb">Actions</th>
+  </tr>
+  <% @in_state_events.each do |event| %>
+  <tr>
+    <td class="tg-yw4l"><a href="/events/<%= event.id %>"><%= event.name %></a></td>
+    <td class="tg-yw4l"><%= event.date %></td>
+    <td class="tg-yw4l"><%= event.location %></td>
+    <td class="tg-yw4l"><%= event.user.first_name %></td>
+    <td class="tg-yw4l"><% if event.user == current_user %> <a href="/events/<%= event.id %>edit">EDIT</a> | <a data-method="delete" href="/events/<%= event.id %>/destroy">DELETE</a>
+    <% elsif current_user.attending.exists?(event.id) %> Joining |
+    <a data-method="delete" href="/participations/<%= event.id %>/destroy">CANCEL</a>
+    <% else %><a data-method="post" href="/participations/<%= event.id %>/create"> JOIN </a>
+    <% end %></td>
+  </tr>
+  <% end %>
+</table>
+<h3>Here are some events in other states: </h3>
+<table class="tg">
+  <tr>
+    <th class="tg-m1tb">Name</th>
+    <th class="tg-m1tb">Date</th>
+    <th class="tg-m1tb">Location</th>
+    <th class="tg-m1tb">State</th>
+    <th class="tg-m1tb">Host</th>
+    <th class="tg-m1tb">Actions</th>
+  </tr>
+  <% @other_events.each do |event| %>
+  <tr>
+    <td class="tg-yw4l"><a href="/events/<%= event.id %>"><%= event.name %></td>
+    <td class="tg-yw4l"><%= event.date %></td>
+    <td class="tg-yw4l"><%= event.location %></td>
+    <td class="tg-yw4l"><%= event.state %></td>
+    <td class="tg-yw4l"><%= event.user.first_name %></td>
+    <td class="tg-yw4l"><% if event.user == current_user %> <a href="/events/<%= event.id %>edit">EDIT</a> | <a data-method="delete" href="/events/<%= event.id %>/destroy">DELETE</a>
+        <% elsif current_user.attending.exists?(event.id) %> Joining | <a data-method="delete" href="/participations/<%= event.id %>/destroy">CANCEL</a>
+        <% else %><a data-method="post" href="/participations/<%= event.id %>/create"> JOIN </a><% end %></td>
+  </tr>
+  <% end %>
+</table>
+
+<h3>Add an Event!</h3>
+<form action="/events/create" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <p>Name: <input type="text" name="name" required></p>
+    <p>Date: <input type="date" name="date" required value="<%= Date.today %>"></p>
+    <p>Location: <input type="text" name="location" required></p>
+    <p>State: <select name="state" required>
+        <option selected disabled>Select a State</option>
+        <option value="VA">Virginia</option>
+        <option value="NY">New York</option>
+        <option value="CA">California</option>
+        <option value="DC">Washington DC</option>
+        <option value="CO">Colorado</option>
+    </select></p>
+    <input type="submit" value="Create Event!">
+</form>

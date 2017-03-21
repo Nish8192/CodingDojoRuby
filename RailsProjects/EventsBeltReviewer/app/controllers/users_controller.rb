@@ -11,12 +11,6 @@ class UsersController < ApplicationController
         end
     end
 
-    def show
-        @in_state_events = Event.where(state: current_user.state)
-        @other_events = Event.where.not(state: current_user.state)
-        render "users/show.html.erb"
-    end
-
     def edit
         render "users/edit.html.erb"
     end
@@ -28,8 +22,9 @@ class UsersController < ApplicationController
         user.email = params[:email]
         user.location = params[:location]
         user.state = params[:state]
-        user.password = current_user.password_digest
-        user.password_confirmation = current_user.password_digest
+        # pass = user.password_digest
+        # user.password = pass
+        # user.password_confirmation = pass
         user.save
         if user.valid?
             flash[:errors] = ["Information Successfully Changed!!"]

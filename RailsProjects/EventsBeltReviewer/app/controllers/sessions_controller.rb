@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
     def new
+        reset_session
         render "sessions/new.html.erb"
     end
 

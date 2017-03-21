@@ -6,12 +6,11 @@
     <p>Last Name: <input type="text" name="last_name" value="<%= current_user.last_name%>"></p>
     <p>Email: <input type="text" name="email" value="<%= current_user.email%>"></p>
     <p>Location: <input type="text" name="location" value="<%= current_user.location%>"><select name="state">
-        <option default disabled>Select a State</option>
-        <option value="VA">Virginia</option>
-        <option value="NY">New York</option>
-        <option value="CA">California</option>
-        <option value="DC">Washington DC</option>
-        <option value="CO">Colorado</option>
+        <option value="VA"<% if current_user.state == "VA"%> selected <% end %>>Virginia</option>
+        <option value="NY"<% if current_user.state == "NY"%> selected <% end %>>New York</option>
+        <option value="CA"<% if current_user.state == "CA"%> selected <% end %>>California</option>
+        <option value="DC"<% if current_user.state == "DC"%> selected <% end %>>Washington DC</option>
+        <option value="CO"<% if current_user.state == "CO"%> selected <% end %>>Colorado</option>
     </select></p>
     <input type="submit" value="Update User Info">
 </form>

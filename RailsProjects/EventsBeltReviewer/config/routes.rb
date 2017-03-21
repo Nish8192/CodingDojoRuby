@@ -5,10 +5,19 @@ Rails.application.routes.draw do
   post "/sessions/create" => "sessions#create"
   delete "/sessions/:id" => "sessions#destroy"
 
-  get "/users/:id" => "users#show"
+
   post "/users/create" => "users#create"
   get "/users/:id/edit" => "users#edit"
   patch "/users/:id/edit" => "users#update"
 
   get "/events" => "events#index"
+  post "/events/create" => "events#create"
+  get "/events/:id" => "events#view"
+  delete "/events/:id/destroy" => "events#destroy"
+
+  post "/participations/:id/create" => "participations#create"
+  delete "/participations/:id/destroy" => "participations#destroy"
+
+  post "/events/:id/comment/create" => "comments#create"
+
 end
