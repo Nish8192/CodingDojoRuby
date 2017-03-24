@@ -1,0 +1,39 @@
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg .tg-m1tb{font-weight:bold;background-color:#000000;color:#ffffff;text-align:center;vertical-align:top}
+.tg .tg-yw4l{vertical-align:top}
+</style>
+
+<h1>Hello <%= current_user.name %>!</h1>
+<p>Here is your profile description:</p>
+<div id="desc">
+    <%= current_user.description %>
+</div>
+<br>
+<br>
+<p>Your Professional Network: </p>
+<div id="network">
+    <% if @users %>
+    <% @users.each do |user| %>
+    <p><a href="/users/<%=user.friend.id%>"><%= user.friend.name %></a></p>
+    <% end %>
+    <% end %>
+</div>
+
+<p>Your Invitations!</p>
+<table class="tg">
+  <tr>
+    <th class="tg-m1tb">Name</th>
+    <th class="tg-m1tb">Action</th>
+  </tr>
+  <% if @invitations %>
+  <% @invitations.each do |invitation| %>
+  <tr>
+    <td class="tg-yw4l"> <a href="/users/<%=invitation.sender.id%>"><%= invitation.sender.name %></a></td>
+    <td class="tg-yw4l"><a href="/network/<%=invitation.sender.id%>/create/<%=invitation.id%>"data-method="post">Accept</a> | <a href="/invitation/<%=invitation.id%>/delete" data-method="delete">Ignore</a></td>
+  </tr>
+  <% end %>
+  <% end %>
+</table>

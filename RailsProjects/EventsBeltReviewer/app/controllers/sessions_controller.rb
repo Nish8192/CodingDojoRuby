@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+    before_action :require_login, except: [:create, :new]
     def new
         reset_session
         render "sessions/new.html.erb"
