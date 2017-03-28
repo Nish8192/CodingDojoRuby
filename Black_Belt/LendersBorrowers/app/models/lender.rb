@@ -4,7 +4,7 @@ class Lender < ApplicationRecord
   PASSWORD_VALIDATOR = /(?=.*[A-Z])(?=.*\d)/
   validates :first_name, :last_name, :email, :password, :money, presence: true
   validates :email, uniqueness: { case_sensitive:false }, format: { with: EMAIL_REGEX}
-  validates :password, length: {minimum: 8}, format: {with: PASSWORD_VALIDATOR}
+  before_create :password, length: {minimum: 8}, format: {with: PASSWORD_VALIDATOR}
   has_many :loans
   has_many :debtors, through: :loans, source: :borrower
 end
