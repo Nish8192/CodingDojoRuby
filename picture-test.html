@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=utf-8>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <title>Edmunds API Example</title>
+</head>
+<body>
+    <div id="results-body"></div>
+    <script>
+        window.sdkAsyncInit = function() {
+            // Instantiate the SDK
+            var res = new EDMUNDSAPI('mvah63jx5r4z4duey2y9t885');
+            // Optional parameters
+            var options = {};
+            // Callback function to be called when the API response is returned
+            function success(res) {
+                var body = document.getElementById('results-body');
+                console.log(res);
+                body.innerHTML = "This photo's title is : " + res.photos[0].title;
+                body.append(
+                    `<img src="http://media.ed.edmunds-media.com/kia/sportage/2017/oem/2017_kia_sportage_4dr-suv_sx_fq_oem_6_98.jpg" width="300">`+
+                    `<p>${res.photos[0].sources[0].link.href}</p>`
+                );
+            }
+            // Oops, Houston we have a problem!
+            function fail(data) {
+                console.log(data);
+            }
+            // Fire the API call
+            res.api('/api/media/v2/kia/sportage/2017/photos', options, success, fail);
+            // Additional initialization code such as adding Event Listeners goes here
+        };
+        // Load the SDK asynchronously
+        (function(d, s, id){
+            var js, sdkjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "C:/Users/nish8/Documents/CodingDojoRuby/sdk-javascript/edmunds.api.sdk.js";
+            sdkjs.parentNode.insertBefore(js, sdkjs);
+        }(document, 'script', 'edmunds-jssdk'));
+    </script>
+</body>
+</html>
